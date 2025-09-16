@@ -8,11 +8,11 @@ use App\Http\Middleware\AdminBasicAuth;
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         web: __DIR__.'/../routes/web.php',
+        // api: __DIR__.'/../routes/api.php',   // opsional kalau tidak pakai
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        // Daftarkan alias middleware di sini
         $middleware->alias([
             'admin.basic' => AdminBasicAuth::class,
         ]);
