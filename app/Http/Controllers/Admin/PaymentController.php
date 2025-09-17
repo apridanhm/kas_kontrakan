@@ -11,17 +11,22 @@ use Illuminate\Validation\Rule;
 
 class PaymentController extends Controller
 {
-public function index(Request $request)
-{
-$month = $request->query('month', now()->format('Y-m'));
-$payments = Payment::with('member')
-->where('month_year', $month)
-->orderByJoin('member.name') // Laravel 11 helper; jika error, ganti ->join->orderBy
-->paginate(25);
-
-
-return view('admin.payments.index', compact('payments', 'month'));
-}
+    public function index(Request $request)
+    {
+        $month = $request->query('month', now()->format('Y-m'));
+    
+        $payments = \App\Models\Payment::with('member')
+            ->where('month_year', $month)
+            ->join('members', 'members.id', '=', 'payments.member_id') // <-- join relasi
+            ->select('payments.*')                                     // <-- penting biar kolom nggak ambigu
+            ->orderBy('members.name')                                  // <-- urut berdasarkan nama member
+            ->paginate(25)
+            ->withQueryString();
+    
+        $total = \App\Models\Payment::where('month_year', $month)->sum('amount');
+    
+        return view('admin.payments.index', compact('payments','month','total'));
+    }
 
 
 public function create(Request $request)
