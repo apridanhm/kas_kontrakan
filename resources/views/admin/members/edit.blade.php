@@ -12,10 +12,11 @@
 <label class="form-label">Telepon</label>
 <input name="phone" class="form-control" value="{{ $member->phone }}">
 </div>
-<div class="col-md-12 form-check">
-<input type="checkbox" name="active" id="active" class="form-check-input" {{ $member->active ? 'checked' : '' }}>
+<input type="hidden" name="active" value="0">
+<input type="checkbox" name="active" id="active" class="form-check-input" value="1"
+       {{ old('active', $member->active ? '1' : '0') == '1' ? 'checked' : '' }}>
 <label for="active" class="form-check-label">Aktif</label>
-</div>
+
 </div>
 <div class="mt-3">
 <button class="btn btn-primary">Update</button>

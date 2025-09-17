@@ -12,15 +12,6 @@
 </head>
 <body class="bg-light">
 <nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top">
-<div class="container">
-<a class="navbar-brand fw-semibold" href="/">Kas Kontrakan</a>
-<div class="d-flex gap-2">
-<a class="btn btn-sm btn-outline-secondary" href="/admin">Admin</a>
-</div>
-</div>
-</nav>
-
-<nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top">
   <div class="container">
     <a class="navbar-brand fw-semibold" href="/">Kas Kontrakan</a>
 
@@ -43,6 +34,7 @@
     @endif
   </div>
 </nav>
+
 
 
 
